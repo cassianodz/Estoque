@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_21_130639) do
+ActiveRecord::Schema.define(version: 2022_03_22_103839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "materials", force: :cascade do |t|
+    t.string "descricao"
+    t.string "lote"
+    t.date "vencimento"
+    t.integer "quantidade"
+    t.string "observacao"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "area"
+  end
+
+  create_table "transacaos", force: :cascade do |t|
+    t.bigint "material_id_id"
+    t.bigint "user_id_id"
+    t.integer "quantidade"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["material_id_id"], name: "index_transacaos_on_material_id_id"
+    t.index ["user_id_id"], name: "index_transacaos_on_user_id_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false

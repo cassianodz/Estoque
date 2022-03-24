@@ -14,3 +14,17 @@ ActiveStorage.start()
 
 import "controllers"
 import "bootstrap"
+import { initFlatpickr } from "../plugins/flatpickr";
+import flatpickr from 'flatpickr'
+import 'flatpickr/dist/flatpickr.min.css'
+flatpickr(".datepicker", {
+  altInput: true,
+  language: 'pt',
+  format: 'dd.mm.yyyy',
+  autoclose: true,
+  language: 'ru'
+})
+document.addEventListener('turbolinks:load', () => {
+
+  initFlatpickr();
+});

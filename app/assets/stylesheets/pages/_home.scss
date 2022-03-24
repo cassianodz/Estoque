@@ -1,1 +1,14 @@
 // Specific CSS for your home-page
+.main_table{
+  border-collapse: collapse;
+}
+
+body{
+  color:rgb(0, 0, 0)
+}
+
+td, th {
+  border: 1px solid #999;
+  padding: 0.5rem;
+  text-align: center;
+}
