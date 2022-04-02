@@ -25,7 +25,8 @@ document.addEventListener('turbolinks:load', () => {
             input_html: {class: "datepicker"} %>
         <%= f.input :quantidade,
             required: true,
-            label: "Quantidade"%>
+            label: "Quantidade",
+            input_html: {  default: '1', min: '1', step: 'any' }%>
         <%= f.input :area, collection: ['Médico-Hospitalar', 'Farmácia', 'Odontologia'],
                 label: "Área",
                 required: true %>

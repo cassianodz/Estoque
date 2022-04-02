@@ -1,7 +1,10 @@
 // Specific CSS for your home-page
-.main_table{
+.main_table {
   border-collapse: collapse;
 }
+
+
+
 
 body{
   color:rgb(0, 0, 0)
@@ -9,6 +12,42 @@ body{
 
 td, th {
   border: 1px solid #999;
-  padding: 0.5rem;
+  padding: 1px;
   text-align: center;
+}
+
+.cabeca {
+  padding: 30px;
+  max-width : 1100px;
+}
+.d-flex {
+  max-width : 960px;
+}
+
+.materiais {
+  text-align: center;
+  color: rgb(0, 17, 255);
+  font-size: 28px;
+  background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(25, 9, 247));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  max-width : 960px;
+}
+
+.impar {
+  background-color: grey;
+}
+
+.par {
+  background-color: rgb(255, 255, 255);
+}
+
+.form-inline div {
+  display: inline-block
+}
+
+.material_qt_altera {
+width: 70px;
 }

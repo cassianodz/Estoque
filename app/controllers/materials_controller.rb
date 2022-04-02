@@ -13,10 +13,21 @@ class MaterialsController < ApplicationController
   def create
     @material = Material.new(material_params)
     @material.save
+    redirect_to controller: 'pages', action: 'home'
   end
 
   def show
     @material = Material.find(params[:id])
+  end
+
+  def update
+    @material = Material.find(params[:id])
+    @valor_altera = calcula_valor
+    @material.quantidade += @valor_altera
+    @material.save
+    salva_transacao
+    redirect_to :controller => 'pages', :action => 'home'
+    # @material.update(material_params)
   end
 
   def datepicker_input form, field
@@ -29,6 +40,23 @@ class MaterialsController < ApplicationController
 
   def material_params
     params.require(:material).permit(:descricao, :lote, :vencimento,
-      :quantidade, :observacao, :area, :sort)
+                                     :quantidade, :observacao, :area,
+                                     :sort, :qtd, :id, :qt_altera, :busca)
+  end
+
+  def salva_transacao
+    @transacao = Transacao.new
+    @transacao.material_id_id = @material.id
+    @transacao.user_id_id = current_user.id
+    @transacao.quantidade = @valor_altera
+    @transacao.save
+  end
+
+  def calcula_valor
+    if params[:qtd] == "add"
+      return params[:material][:qt_altera].to_i
+    else
+      return -1 * params[:material][:qt_altera].to_i
+    end
   end
 end
