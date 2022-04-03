@@ -17,8 +17,10 @@
       <%= f.input :busca, as: :string %>
       <%= f.button :submit, "Go", class: "btn btn-primary" %>
     <% end %>
-<table class = "main_table">
 
+
+<%if @materials.count > 1%>
+  <table class = "main_table">
   <tr>
     <th><%= link_to "Descrição", :sort => "descricao"%></th>
     <th><%= link_to "Lote", :sort => "lote"%></th>
@@ -27,34 +29,37 @@
     <th><%= link_to "Área", :sort => "area"%></th>
     <th>Observação</th>
   </tr>
-<% @materials.each_with_index do |material, index| %>
-<%classe = "impar" %>
-<%classe = "par" unless index.odd? %>
+  <% @materials.each_with_index do |material, index| %>
+  <%classe = "impar" %>
+  <%classe = "par" unless index.odd? %>
 
 
-<tr class = <%=classe%> >
+  <tr class = <%=classe%> >
 
-    <td><%= material.descricao %></td>
-    <td><%= material.lote %></td>
-    <td><%= material.vencimento.strftime("%d/%m/%Y") %></td>
-    <td><%= material.quantidade %></td>
-    <td><%= material.area %></td>
-    <td><%= material.observacao %></td>
-    <td><%=simple_form_for material, :html => {:class => 'form-inline' }, url: "/materials/#{material.id}", method: :patch  do |f| %>
-    <%= radio_button_tag(:qtd, "add") %>
-    <%= label_tag(:alt_adiciona, "Adiciona") %>
-    <%= radio_button_tag(:qtd, "subt") %>
-    <%= label_tag(:alt_retira, "Subtrai") %>
-    <%= f.input :qt_altera, as: :integer, label: "Qtd.", input_html: {  default: '1', min: '1', step: 'any', value:  nil }%>
-    <%= f.submit "Altera", class: "btn btn-primary" %>
+      <td><%= material.descricao %></td>
+      <td><%= material.lote %></td>
+      <td><%= material.vencimento.strftime("%d/%m/%Y") %></td>
+      <td><%= material.quantidade %></td>
+      <td><%= material.area %></td>
+      <td><%= material.observacao %></td>
+      <td><%=simple_form_for material, :html => {:class => 'form-inline' }, url: "/materials/#{material.id}", method: :patch  do |f| %>
+      <%= radio_button_tag(:qtd, "add") %>
+      <%= label_tag(:alt_adiciona, "Adiciona") %>
+      <%= radio_button_tag(:qtd, "subt") %>
+      <%= label_tag(:alt_retira, "Subtrai") %>
+      <%= f.input :qt_altera, as: :integer, label: "Qtd.", input_html: {  default: '1', min: '1', step: 'any', value:  nil }%>
+      <%= f.submit "Altera", class: "btn btn-primary" %>
 
-    <%=f.hidden_field :id, value: material.id%>
-    <%   end %>
-    </td>
-    <%# <td><%= link_to 'Show', material %>
-    <%# <td><%= link_to 'Edit', edit_material_path(material) %>
-    <%# <td><%= link_to 'Remove', material, :confirm => 'Are you sure?', :method => :delete %>
-  </tr>
+      <%=f.hidden_field :id, value: material.id%>
+      <%   end %>
+      </td>
+      <%# <td><%= link_to 'Show', material %>
+      <%# <td><%= link_to 'Edit', edit_material_path(material) %>
+      <%# <td><%= link_to 'Remove', material, :confirm => 'Are you sure?', :method => :delete %>
+    </tr>
+  <% end %>
+  </table>
+<% else %>
+  <h4>Nenhum Resultado</h4>
 <% end %>
-</table>
 </div>
