@@ -12,10 +12,15 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
+            <%= %>
+              <%= link_to "Usuário: #{current_user.email}", "#", class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
             <%= link_to "Listagem de Material", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "cadeceus.jpg", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
