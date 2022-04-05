@@ -1,7 +1,8 @@
 class MaterialsController < ApplicationController
 
   def index
-    @materials = Material.all
+    binding.pry
+    @materials = Material.where('quantidade > 0')
 
     #@materials = Material.order(params[:sort])
   end
