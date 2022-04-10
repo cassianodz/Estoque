@@ -1,10 +1,6 @@
 class MaterialsController < ApplicationController
-
   def index
-    binding.pry
     @materials = Material.where('quantidade > 0')
-
-    #@materials = Material.order(params[:sort])
   end
 
   def new
@@ -27,12 +23,15 @@ class MaterialsController < ApplicationController
     @material.quantidade += @valor_altera
     @material.save
     salva_transacao
-    redirect_to :controller => 'pages', :action => 'home'
+    redirect_to controller: 'pages', action: 'home'
     # @material.update(material_params)
   end
 
-  def datepicker_input form, field
-    content_tag :td, :data => {:provide => 'datepicker', 'date-format' => 'dd-mm-yyyy', 'date-autoclose' => 'true', 'language' => 'pt'} do
+  def datepicker_input(form, field)
+    content_tag :td, data: { provide: 'datepicker',
+                             'date-format' => 'dd-mm-yyyy',
+                             'date-autoclose' => 'true',
+                             'language' => 'pt'} do
       form.text_field field, class: 'form-control', placeholder: 'DD-MM-YYYY'
     end
   end
@@ -54,10 +53,8 @@ class MaterialsController < ApplicationController
   end
 
   def calcula_valor
-    if params[:qtd] == "add"
-      return params[:material][:qt_altera].to_i
-    else
-      return -1 * params[:material][:qt_altera].to_i
-    end
+    return -1 * params[:material][:qt_altera].to_i unless params[:qtd] == "add"
+
+    return params[:material][:qt_altera].to_i
   end
 end

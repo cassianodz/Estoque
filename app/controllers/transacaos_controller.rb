@@ -12,6 +12,7 @@ class TransacaosController < ApplicationController
 
   def show
     @transacaos = Transacao.all
+    @transacaos = @transacaos.order(created_at: :desc)
     cria_string_relatorio
     @transacaos = @resultado
   end
