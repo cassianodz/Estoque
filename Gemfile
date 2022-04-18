@@ -7,6 +7,7 @@ gem 'net-pop', require: false
 gem 'net-imap', require: false
 ruby '3.1.0'
 gem 'compass', ">= 0.10.6"
+gem 'bootstrap-scss'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-datepicker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
