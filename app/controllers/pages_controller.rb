@@ -2,12 +2,26 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: []
 
   def home
+
     unless params[:search].nil?
+      unless params[:search][:escolha_radio].nil?
+        case params[:search][:escolha_radio]
+        when "M"
+          @materials = Material.where("area = 'Médico-Hospitalar'", "quantidade > 0" )
+        when "O"
+          @materials = Material.where("area ='Odontologia'", "quantidade > 0" )
+        when "F"
+          @materials = Material.where("area= 'Farmácia'", "quantidade > 0" )
+        end
+        @materials =  @materials.sort_by(&:vencimento)
+        return @materials
+      end
       query = params[:search][:busca].downcase
       @materials_copy = Material.where('lower(descricao) like ? OR lower(lote) like ? OR lower(observacao) like ? AND quantidade > 0', "%#{query}%", "%#{query}%", "%#{query}%")
     end
     select_dataset
   end
+
 
   private
 
