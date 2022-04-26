@@ -15,7 +15,7 @@
     <%= f.button :submit, "Go", class: "btn btn-primary" %>
   <% end %>
 
-  <%= simple_form_for :search, :html => {:class => 'form-inline' },  method: "get" do |f| %>
+  <%= simple_form_for :filter, :html => {:class => 'form-inline' },  method: "get" do |f| %>
     <%= f.label :escolha_radio, label: "Filtrar por Área" %><br />
     <%= f.label :escolha_radio, "Médico-Hospitalar", value: "M"  %>
     <%= f.radio_button :escolha_radio, "M" %>
