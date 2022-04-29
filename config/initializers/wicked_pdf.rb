@@ -7,10 +7,10 @@
 # To learn more, check out the README:
 #
 # https://github.com/mileszs/wicked_pdf/blob/master/README.md
-# WickedPdf.config ||= {}
-# WickedPdf.config.merge!({
-#   layout: "pdf.html.erb",
-# })
+WickedPdf.config ||= {}
+WickedPdf.config.merge!({
+  layout: "pdf.html.erb",
+})
 
 WickedPdf.config = {
   # Path to the wkhtmltopdf executable: This usually isn't needed if using
