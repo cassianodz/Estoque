@@ -9,13 +9,20 @@
     <hr>
     Materiais
   </div>
+
+  <%a = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>
+
+
+
+  <%= link_to "PDF", root_path(format: :pdf, test: a )%>
   <br>
+
   <%= simple_form_for :search, :html => {:class => 'form-inline' },  method: "get" do |f| %>
     <%= f.input :busca, as: :string %>
     <%= f.button :submit, "Go", class: "btn btn-primary" %>
   <% end %>
-
-  <%= simple_form_for :filter, :html => {:class => 'form-inline' },  method: "get" do |f| %>
+<h5>Filtro</h5>
+  <%= simple_form_for :filter, method: "get" do |f| %>
     <%= f.label :escolha_radio, label: "Filtrar por Área" %><br />
     <%= f.label :escolha_radio, "Médico-Hospitalar", value: "M"  %>
     <%= f.radio_button :escolha_radio, "M" %>
