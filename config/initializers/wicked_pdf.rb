@@ -2,5 +2,5 @@ WickedPdf.config ||= {}
 WickedPdf.config.merge!({
   layout: "pdf",
   orientation: "Portrait",
-  page_size> "A4"
+  page_size: "A4"
 })
