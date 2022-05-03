@@ -1,4 +1,5 @@
 
+
 <div class = "cabeca">
   <div class="d-flex align-items-center justify-content-between">
     <%= link_to 'Cadastrar material',  new_material_path, class: 'btn btn-outline-warning' %>
@@ -13,67 +14,35 @@
   <%a = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>
 
 
+<%= link_to 'Versão de impressão', imprimir_path(test: a),  {target: :_blank} %>
 
-  <%= link_to "PDF", root_path(format: :pdf)%>
+
+  <div class = "container">
+ <div class=filtro>
+ <br>
+  <%= simple_form_for :search, :html => {:class => 'form-inline' },  method: "get" do |f| %>
+
+    <%= f.input :busca, as: :string %>
+    <%= f.button :submit, "Buscar", class: "btn btn-primary" %>
+  <% end %>
+  </div>
+  <div class=filtro>
   <br>
 
-  <%= simple_form_for :search, :html => {:class => 'form-inline' },  method: "get" do |f| %>
-    <%= f.input :busca, as: :string %>
-    <%= f.button :submit, "Go", class: "btn btn-primary" %>
-  <% end %>
-<h5>Filtro</h5>
-  <%= simple_form_for :filter, method: "get" do |f| %>
+  <%= simple_form_for :filter, :html => {:class => 'form-default'}, method: "get" do |f| %>
     <%= f.label :escolha_radio, label: "Filtrar por Área" %><br />
     <%= f.label :escolha_radio, "Médico-Hospitalar", value: "M"  %>
-    <%= f.radio_button :escolha_radio, "M" %>
+    <%= f.radio_button :escolha_radio, "M" %><br />
     <%= f.label :escolha_radio, "Farmácia", :value => "F" %>
-    <%= f.radio_button :escolha_radio, "F" %>
+    <%= f.radio_button :escolha_radio, "F" %><br />
     <%= f.label :escolha_radio, "Odontologia", :value => "O" %>
-    <%= f.radio_button :escolha_radio, "O" %>
-    <%= f.button :submit, "Go", class: "btn btn-primary" %>
+    <%= f.radio_button :escolha_radio, "O" %><br />
+    <%= f.button :submit, "Filtrar", class: "btn btn-primary" %><br />
+
   <% end %>
+  </div>
+  </div>
+  <br>
+<%= render "relatorio" %>
 
-<%if @materials.count > 0%>
-  <table class = "main_table">
-  <tr>
-    <th><%= link_to "Descrição", :sort => "descricao"%></th>
-    <th><%= link_to "Lote", :sort => "lote"%></th>
-    <th><%= link_to "Vencimento", :sort => "vencimento"%></th>
-    <th><%= link_to "Qtd", :sort => "quantidade"%></th>
-    <th><%= link_to "Área", :sort => "area"%></th>
-    <th>Observação</th>
-  </tr>
-  <% @materials.each_with_index do |material, index| %>
-  <%classe = "impar" %>
-  <%classe = "par" unless index.odd? %>
-
-
-  <tr class = <%=classe%> >
-
-      <td><%= material.descricao %></td>
-      <td><%= material.lote %></td>
-      <td><%= material.vencimento.strftime("%d/%m/%Y") %></td>
-      <td><%= material.quantidade %></td>
-      <td><%= material.area %></td>
-      <td><%= material.observacao %></td>
-      <td><%=simple_form_for material, :html => {:class => 'form-inline' }, url: "/materials/#{material.id}", method: :patch  do |f| %>
-      <%= radio_button_tag(:qtd, "add") %>
-      <%= label_tag(:alt_adiciona, "Adiciona") %>
-      <%= radio_button_tag(:qtd, "subt") %>
-      <%= label_tag(:alt_retira, "Subtrai") %>
-      <%= f.input :qt_altera, as: :integer, label: "Qtd.", input_html: {  default: '1', min: '1', step: 'any', value:  nil }%>
-      <%= f.submit "Altera", class: "btn btn-primary" %>
-
-      <%=f.hidden_field :id, value: material.id%>
-      <%   end %>
-      </td>
-      <%# <td><%= link_to 'Show', material %>
-      <%# <td><%= link_to 'Edit', edit_material_path(material) %>
-      <%# <td><%= link_to 'Remove', material, :confirm => 'Are you sure?', :method => :delete %>
-    </tr>
-  <% end %>
-  </table>
-<% else %>
-  <h4>Nenhum Resultado</h4>
-<% end %>
 </div>

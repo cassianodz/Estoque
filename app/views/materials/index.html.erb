@@ -1,11 +1,4 @@
-
-<div class = "cabeca">
-
-  <div class = "materiais">
-    <hr>
-    Materiais
-  </div>
-
+<%bindin.pry%>
 <%if @materials.count > 0%>
   <table class = "main_table">
   <tr>
@@ -29,14 +22,23 @@
       <td><%= material.quantidade %></td>
       <td><%= material.area %></td>
       <td><%= material.observacao %></td>
+      <td><%=simple_form_for material, :html => {:class => 'form-inline' }, url: "/materials/#{material.id}", method: :patch  do |f| %>
+      <%= radio_button_tag(:qtd, "add") %>
+      <%= label_tag(:alt_adiciona, "Adiciona") %>
+      <%= radio_button_tag(:qtd, "subt") %>
+      <%= label_tag(:alt_retira, "Subtrai") %>
+      <%= f.input :qt_altera, as: :integer, label: "Qtd.", input_html: {  default: '1', min: '1', step: 'any', value:  nil }%>
+      <%= f.submit "Altera", class: "btn btn-primary" %>
 
+      <%=f.hidden_field :id, value: material.id%>
+      <%   end %>
       </td>
       <%# <td><%= link_to 'Show', material %>
       <%# <td><%= link_to 'Edit', edit_material_path(material) %>
       <%# <td><%= link_to 'Remove', material, :confirm => 'Are you sure?', :method => :delete %>
     </tr>
   <% end %>
+  </table>
 <% else %>
   <h4>Nenhum Resultado</h4>
 <% end %>
-</div>

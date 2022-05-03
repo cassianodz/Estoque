@@ -1,10 +1,12 @@
-class MaterialsController < ApplicationController
+class MaterialsController < MaterialsAndPagesController
+  skip_before_action :authenticate_user!, only: []
   def index
     @materials = Material.where('quantidade > 0')
   end
 
   def new
     @material = Material.new
+
   end
 
   def create
@@ -13,9 +15,6 @@ class MaterialsController < ApplicationController
     redirect_to controller: 'pages', action: 'home'
   end
 
-  def show
-    @material = Material.find(params[:id])
-  end
 
   def update
     @material = Material.find(params[:id])

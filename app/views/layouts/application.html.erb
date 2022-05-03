@@ -14,7 +14,9 @@
   </head>
 
   <body>
+    <% unless current_page?(imprimir_path)%>
     <%= render 'shared/navbar' %>
+    <%end%>
     <%= render 'shared/flashes' %>
 
     <%= yield %>

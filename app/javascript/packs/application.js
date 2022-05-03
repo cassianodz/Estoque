@@ -11,7 +11,6 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
-
 import "controllers"
 import "bootstrap"
 import { initFlatpickr } from "../plugins/flatpickr";
