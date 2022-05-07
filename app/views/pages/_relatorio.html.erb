@@ -1,5 +1,4 @@
-
-<%if @materials.count > 0%>
+<% if @materials.count > 0 %>
   <table class = "main_table">
   <tr>
     <th><%= link_to "Descrição", :sort => "descricao"%></th>
@@ -10,12 +9,9 @@
     <th>Observação</th>
   </tr>
   <% @materials.each_with_index do |material, index| %>
-  <%classe = "impar" %>
-  <%classe = "par" unless index.odd? %>
-
-
+  <% classe = "impar" %>
+  <% classe = "par" unless index.odd? %>
   <tr class = <%=classe%> >
-
       <td><%= material.descricao %></td>
       <td><%= material.lote %></td>
       <td><%= material.vencimento.strftime("%d/%m/%Y") %></td>
@@ -30,9 +26,8 @@
       <%= label_tag(:alt_retira, "Subtrai") %>
       <%= f.input :qt_altera, as: :integer, label: "Qtd.", input_html: {  default: '1', min: '1', step: 'any', value:  nil }%>
       <%= f.submit "Altera", class: "btn btn-primary" %>
-
-      <%=f.hidden_field :id, value: material.id%>
-      <%   end %>
+      <%= f.hidden_field :id, value: material.id%>
+      <% end %>
       </td>
       <% end %>
     </tr>

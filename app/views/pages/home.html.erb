@@ -4,45 +4,35 @@
   <div class="d-flex align-items-center justify-content-between">
     <%= link_to 'Cadastrar material',  new_material_path, class: 'btn btn-outline-warning' %>
     <%= link_to 'Relatório de alterações', "transacaos/show#", class: 'btn btn-outline-warning' %>
-
   </div>
   <div class = "materiais">
     <hr>
     Materiais
   </div>
-
   <%a = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"%>
-
-
-<%= link_to 'Versão de impressão', imprimir_path(test: a),  {target: :_blank} %>
-
-
+  <%= link_to 'Versão de impressão', imprimir_path(test: a),  {target: :_blank} %>
   <div class = "container">
- <div class=filtro>
- <br>
-  <%= simple_form_for :search, :html => {:class => 'form-inline' },  method: "get" do |f| %>
-
-    <%= f.input :busca, as: :string %>
-    <%= f.button :submit, "Buscar", class: "btn btn-primary" %>
-  <% end %>
-  </div>
-  <div class=filtro>
-  <br>
-
-  <%= simple_form_for :filter, :html => {:class => 'form-default'}, method: "get" do |f| %>
-    <%= f.label :escolha_radio, label: "Filtrar por Área" %><br />
-    <%= f.label :escolha_radio, "Médico-Hospitalar", value: "M"  %>
-    <%= f.radio_button :escolha_radio, "M" %><br />
-    <%= f.label :escolha_radio, "Farmácia", :value => "F" %>
-    <%= f.radio_button :escolha_radio, "F" %><br />
-    <%= f.label :escolha_radio, "Odontologia", :value => "O" %>
-    <%= f.radio_button :escolha_radio, "O" %><br />
-    <%= f.button :submit, "Filtrar", class: "btn btn-primary" %><br />
-
-  <% end %>
-  </div>
+    <div class=filtro>
+      <br>
+      <%= simple_form_for :search, :html => {:class => 'form-inline' },  method: "get" do |f| %>
+        <%= f.input :busca, as: :string %>
+        <%= f.button :submit, "Buscar", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class=filtro>
+    <br>
+    <%= simple_form_for :filter, :html => {:class => 'form-default'}, method: "get" do |f| %>
+      <%= f.label :escolha_radio, label: "Filtrar por Área" %><br />
+      <%= f.label :escolha_radio, "Médico-Hospitalar", value: "M"  %>
+      <%= f.radio_button :escolha_radio, "M" %><br />
+      <%= f.label :escolha_radio, "Farmácia", :value => "F" %>
+      <%= f.radio_button :escolha_radio, "F" %><br />
+      <%= f.label :escolha_radio, "Odontologia", :value => "O" %>
+      <%= f.radio_button :escolha_radio, "O" %><br />
+      <%= f.button :submit, "Filtrar", class: "btn btn-primary" %><br />
+    <% end %>
+    </div>
   </div>
   <br>
-<%= render "relatorio" %>
-
+  <%= render "relatorio" %>
 </div>

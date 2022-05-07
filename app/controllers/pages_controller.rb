@@ -1,5 +1,2 @@
 class PagesController < MaterialsAndPagesController
-
-
-
 end

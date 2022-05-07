@@ -6,7 +6,6 @@ class MaterialsController < MaterialsAndPagesController
 
   def new
     @material = Material.new
-
   end
 
   def create
@@ -15,7 +14,6 @@ class MaterialsController < MaterialsAndPagesController
     redirect_to controller: 'pages', action: 'home'
   end
 
-
   def update
     @material = Material.find(params[:id])
     @valor_altera = calcula_valor
@@ -23,7 +21,6 @@ class MaterialsController < MaterialsAndPagesController
     @material.save
     salva_transacao
     redirect_to controller: 'pages', action: 'home'
-    # @material.update(material_params)
   end
 
   def datepicker_input(form, field)
@@ -53,7 +50,6 @@ class MaterialsController < MaterialsAndPagesController
 
   def calcula_valor
     return -1 * params[:material][:qt_altera].to_i unless params[:qtd] == "add"
-
     return params[:material][:qt_altera].to_i
   end
 end

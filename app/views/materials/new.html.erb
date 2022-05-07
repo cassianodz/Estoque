@@ -1,41 +1,35 @@
 <div class="tudo">
-
 <script>
-document.addEventListener('turbolinks:load', () => {
-
-  initFlatpickr();
-});
+document.addEventListener('turbolinks:load', () => {initFlatpickr(); });
 </script>
   <div class="container">
-
     <div class="form-wrapper" style="width: 400px; margin: 0 auto;">
     <h1>Cadastrar novo material</h1>
       <%= simple_form_for (@material) do |f| %>
         <%= f.input :descricao,
-            required: true,
-            label: "Descrição"%>
+              required: true,
+              label: "Descrição"%>
         <%= f.input :lote,
-            required: true,
-            label: "Lote"%>
+              required: true,
+              label: "Lote"%>
         <%= f.input :vencimento,
-            as: :string,
-            label: "Data de Vencimento",
-            autofocus: true,
-            required: true,
-            input_html: {class: "datepicker"} %>
+              as: :string,
+              label: "Data de Vencimento",
+              autofocus: true,
+              required: true,
+              input_html: {class: "datepicker"} %>
         <%= f.input :quantidade,
-            required: true,
-            label: "Quantidade",
-            input_html: {  default: '1', min: '1', step: 'any' }%>
+              required: true,
+              label: "Quantidade",
+              input_html: {  default: '1', min: '1', step: 'any' }%>
         <%= f.input :area, collection: ['Médico-Hospitalar', 'Farmácia', 'Odontologia'],
-                label: "Área",
-                required: true %>
+              label: "Área",
+              required: true %>
         <%= f.input :observacao,
-            required: false,
-            label: "Observação"%>
+              required: false,
+              label: "Observação"%>
     <%= f.submit "Salvar", class: "btn btn-primary" %>
       <% end %>
-
     </div>
   </div>
 </div>
